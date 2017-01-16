@@ -16,6 +16,8 @@ program main
 
   call input
   call preparation
-!  call init_Ac
+  call init_Ac
 
+  if(Myrank == 0) write(*,*)  'This calculation is shutdown successfully!'
+  call MPI_FINALIZE(ierr)
 end program main
