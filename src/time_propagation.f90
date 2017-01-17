@@ -4,22 +4,16 @@
 ! https://opensource.org/licenses/mit-license.php   !
 !---------------------------------------------------!
 !-------10--------20--------30--------40--------50--------60--------70--------80--------90
-program main
+subroutine time_propagation
   use global_variables
   implicit none
-  integer :: it,ikz,ikr
-  real(8) :: jz_intra,jz_inter,Etz
+  integer :: it
 
-  call MPI_init(ierr)
-  call MPI_COMM_SIZE(MPI_COMM_WORLD,Nprocs,ierr)
-  call MPI_COMM_RANK(MPI_COMM_WORLD,Myrank,ierr)
+  do it = 0,Nt
+    if(myrank == 0)write(*,*)'it=',it,'/',Nt
+    call dt_evolve(it)
 
-  call input
-  call preparation
-  call init_Ac
+  end do
 
-  call time_propagation
 
-  if(Myrank == 0) write(*,*)  'This calculation is shutdown successfully!'
-  call MPI_FINALIZE(ierr)
-end program main
+end subroutine time_propagation
