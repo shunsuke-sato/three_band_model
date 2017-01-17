@@ -40,4 +40,7 @@ module global_variables
   include 'mpif.h'
   integer :: Myrank,Nprocs,ierr
 
+! I/O
+  integer,parameter :: nf_current = 21
+  character(99),parameter :: cf_current = "current.out"
 end module global_variables

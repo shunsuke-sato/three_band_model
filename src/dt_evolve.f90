@@ -11,7 +11,7 @@ subroutine dt_evolve(it) ! Now coding
   integer :: ik,ikr,ikz
   complex(8) :: zHmat(3,3),zEig(3,3)
   complex(8) :: zc1,zc2,zc3
-  real(8) :: eps_t(3)
+  real(8) :: eps_t(3),de12
   real(8) :: Act_old,Act_new,Et_old,Et_new
 
   Act_old = Act(it); Act_new = Act(it+1)
@@ -28,10 +28,15 @@ subroutine dt_evolve(it) ! Now coding
     eps_t(1) = eps_d
     eps_t(2) = -0.5d0/mass_v*(kr(ikr)**2+kz(ikz)**2)
     eps_t(3) = eps_g +0.5d0/mass_c*(kr(ikr)**2+kz(ikz)**2)
-
+    de12 = eps_t(2) - eps_t(1)  
     zHmat(1,1) = eps(1,ik); zHmat(2,2) = eps(2,ik); zHmat(3,3) = eps(3,ik)
-    zHmat(1,2) = -zI*piz_dv*Et_old/(eps_t(1)-eps_t(2)); zHmat(2,1)=conjg(zHmat(1,2))
+    if(abs(de12)*Ry*2d0>1d0)then
+      zHmat(1,2) = -zI*piz_dv*Et_old/(eps_t(1)-eps_t(2)); zHmat(2,1)=conjg(zHmat(1,2))
+    else
+      zHmat(1,2) = 0d0; zHmat(2,1) = 0d0
+    end if
     zHmat(1,3) = -zI*piz_dc*Et_old/(eps_t(1)-eps_t(3)); zHmat(3,1)=conjg(zHmat(1,3))
+
     zHmat(2,3) = -zI*piz_vc*Et_old/(eps_t(2)-eps_t(3)); zHmat(3,2)=conjg(zHmat(2,3))
 
     call diag3x3(zHmat,zEig,eps_t)
@@ -52,9 +57,14 @@ subroutine dt_evolve(it) ! Now coding
     eps_t(1) = eps_d
     eps_t(2) = -0.5d0/mass_v*(kr(ikr)**2+kz(ikz)**2)
     eps_t(3) = eps_g +0.5d0/mass_c*(kr(ikr)**2+kz(ikz)**2)
+    de12 = eps_t(2) - eps_t(1)  
 
     zHmat(1,1) = eps(1,ik); zHmat(2,2) = eps(2,ik); zHmat(3,3) = eps(3,ik)
-    zHmat(1,2) = -zI*piz_dv*Et_new/(eps_t(1)-eps_t(2)); zHmat(2,1)=conjg(zHmat(1,2))
+    if(abs(de12)*Ry*2d0>1d0)then
+      zHmat(1,2) = -zI*piz_dv*Et_new/(eps_t(1)-eps_t(2)); zHmat(2,1)=conjg(zHmat(1,2))
+    else
+      zHmat(1,2) = 0d0; zHmat(2,1) = 0d0
+    end if
     zHmat(1,3) = -zI*piz_dc*Et_new/(eps_t(1)-eps_t(3)); zHmat(3,1)=conjg(zHmat(1,3))
     zHmat(2,3) = -zI*piz_vc*Et_new/(eps_t(2)-eps_t(3)); zHmat(3,2)=conjg(zHmat(2,3))
 

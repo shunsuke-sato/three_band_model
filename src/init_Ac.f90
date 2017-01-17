@@ -10,7 +10,7 @@ subroutine init_Ac
   integer :: it
   real(8) :: tt
 
-  allocate(Act(0:Nt+1),Act_dt2(0:Nt+1),jtz(0:Nt+1),jtz_intra(0:Nt+1),jtz_inter(0:Nt+1))
+  allocate(Act(-1:Nt+1),jtz(0:Nt+1),jtz_intra(0:Nt+1),jtz_inter(0:Nt+1))
 
   E0_1=5.338d-9*sqrt(Iwcm2_1)
   omega_1 = omega_ev_1/(2d0*Ry)
@@ -32,29 +32,11 @@ subroutine init_Ac
           *sin(omega_1*(tt-0.5d0*tpulse_1))
       end if
     end do
-
-    Act_dt2 = 0d0
-    do it = 0,Nt+1
-      tt = dt*dble(it) + 0.5d0*dt
-      if(abs(tt-0.5d0*tpulse_1) < 0.5d0*tpulse_1)then
-        Act_dt2(it) = -(E0_1/omega_1)*cos(pi*(tt-0.5d0*tpulse_1)/tpulse_1)**4 &
-          *sin(omega_1*(tt-0.5d0*tpulse_1))
-      end if
-    end do
   case("cos2cos")
     do it = 0,Nt+1
       tt = dt*dble(it)
       if(abs(tt-0.5d0*tpulse_1) < 0.5d0*tpulse_1)then
         Act(it) = -(E0_1/omega_1)*cos(pi*(tt-0.5d0*tpulse_1)/tpulse_1)**2 &
-          *sin(omega_1*(tt-0.5d0*tpulse_1))
-      end if
-    end do
-
-    Act_dt2 = 0d0
-    do it = 0,Nt+1
-      tt = dt*dble(it) + 0.5d0*dt
-      if(abs(tt-0.5d0*tpulse_1) < 0.5d0*tpulse_1)then
-        Act_dt2(it) = -(E0_1/omega_1)*cos(pi*(tt-0.5d0*tpulse_1)/tpulse_1)**2 &
           *sin(omega_1*(tt-0.5d0*tpulse_1))
       end if
     end do
@@ -74,40 +56,17 @@ subroutine init_Ac
           *sin(omega_2*(tt-0.5d0*tpulse_1-Tdelay))
       end if
     end do
-
-    Act_dt2 = 0d0
-    do it = 0,Nt+1
-      tt = dt*dble(it) + 0.5d0*dt
-
-      if(abs(tt-0.5d0*tpulse_1-Tdelay) < 0.5d0*tpulse_2)then
-        Act_dt2(it) = Act_dt2(it) -(E0_2/omega_2) &
-          *cos(pi*(tt-0.5d0*tpulse_1-Tdelay)/tpulse_2)**4 &
-          *sin(omega_2*(tt-0.5d0*tpulse_1-Tdelay))
-      end if
-    end do
   case("cos2cos")  
     do it = 0,Nt+1
       tt = dt*dble(it)
-
       if(abs(tt-0.5d0*tpulse_1-Tdelay) < 0.5d0*tpulse_2)then
         Act(it) = Act(it) -(E0_2/omega_2) &
           *cos(pi*(tt-0.5d0*tpulse_1-Tdelay)/tpulse_2)**4 &
           *sin(omega_2*(tt-0.5d0*tpulse_1-Tdelay))
       end if
     end do
-
-    Act_dt2 = 0d0
-    do it = 0,Nt+1
-      tt = dt*dble(it) + 0.5d0*dt
-
-      if(abs(tt-0.5d0*tpulse_1-Tdelay) < 0.5d0*tpulse_2)then
-        Act_dt2(it) = Act_dt2(it) -(E0_2/omega_2) &
-          *cos(pi*(tt-0.5d0*tpulse_1-Tdelay)/tpulse_2)**4 &
-          *sin(omega_2*(tt-0.5d0*tpulse_1-Tdelay))
-      end if
-    end do
   case default
-    stop "Invalid envelope_1"
+    stop "Invalid envelope_2"
   end select
 
 
