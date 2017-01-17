@@ -12,7 +12,7 @@ module global_variables
   real(8),parameter :: a_B=0.529177d0,Ry=13.6058d0
 
 ! Material parameter
-  integer :: NKr,NKz,NKrz
+  integer :: NKr,NKz,NKrz,NKrz_s,NKrz_e,NKrz_ave,NKrz_remainder
   integer,allocatable :: ikr_table(:),ikz_table(:)
   real(8) :: kr_max,kz_max,dkr,dkz
   real(8),allocatable :: kr(:),kz0(:),kz(:)

@@ -11,6 +11,26 @@ subroutine preparation
 
 
   NKrz = NKr*(2*NKz+1)
+  NKrz_ave=NKrz/Nprocs; NKrz_remainder=mod(NKrz,Nprocs)
+  if (NKrz_remainder == 0) then
+    NKrz_s=NKrz_ave*Myrank+1
+    NKrz_e=NKrz_ave*(Myrank+1)
+  else
+    if (Myrank +1 <= NKrz_remainder) then
+      NKrz_s=(NKrz_ave+1)*Myrank+1
+      NKrz_e=NKrz_s + (NKrz_ave+1)-1 !(NKrz_ave+1)*(Myrank+1)
+    else
+      NKrz_s=(NKrz_ave+1)*NKrz_remainder + NKrz_ave*(Myrank-NKrz_remainder)+1
+      NKrz_e=NKrz_s + NKrz_ave-1
+    end if
+  end if
+
+  if(myrank==0)then
+    write(*,"(A,2x,I7)")"NKrz=",NKrz
+    write(*,"(A,2x,I7)")"NKrz_ave",NKrz_ave
+    write(*,"(A,2x,I7)")"NKrz_remainder",NKrz_remainder
+  end if
+!  write(*,"(9I9)")myrank,NKrz_s,NKrz_e
 
   allocate(zCt(3,2,NKrz),eps(3,NKrz))
   allocate(kz0(-NKz:NKz),kz(-NKz:NKz),kr(NKr))
