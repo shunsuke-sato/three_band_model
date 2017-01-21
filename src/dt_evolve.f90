@@ -15,7 +15,7 @@ subroutine dt_evolve(it) ! Now coding
   real(8) :: Act_old,Act_new,Et_old,Et_new
 
   Act_old = Act(it); Act_new = Act(it+1)
-  Et_old = -0.5d0*(Act(it+1)-Act(it+1-1))/dt
+  Et_old = -0.5d0*(Act(it+1)-Act(it-1))/dt
   Et_new = -0.5d0*(Act(it+1+1)-Act(it+1-1))/dt
 
   do ik = NKrz_s,NKrz_e
