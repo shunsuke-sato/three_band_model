@@ -28,7 +28,7 @@ subroutine input
   call MPI_BCAST(envelope_1,20,MPI_CHARACTER,0,MPI_COMM_WORLD,ierr)
   call MPI_BCAST(Iwcm2_1,1,MPI_REAL8,0,MPI_COMM_WORLD,ierr)
   call MPI_BCAST(omega_ev_1,1,MPI_REAL8,0,MPI_COMM_WORLD,ierr)
-  call MPI_BCAST(tpulse_fs_2,1,MPI_REAL8,0,MPI_COMM_WORLD,ierr)
+  call MPI_BCAST(tpulse_fs_1,1,MPI_REAL8,0,MPI_COMM_WORLD,ierr)
   call MPI_BCAST(envelope_2,20,MPI_CHARACTER,0,MPI_COMM_WORLD,ierr)
   call MPI_BCAST(Iwcm2_2,1,MPI_REAL8,0,MPI_COMM_WORLD,ierr)
   call MPI_BCAST(omega_ev_2,1,MPI_REAL8,0,MPI_COMM_WORLD,ierr)
