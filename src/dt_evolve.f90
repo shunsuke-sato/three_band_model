@@ -39,13 +39,13 @@ subroutine dt_evolve(it) ! Now coding
 
 ! state 1
     zc1=sum(conjg(zEig(:,1))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(1))
-    zc2=sum(conjg(zEig(:,2))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(1))
-    zc3=sum(conjg(zEig(:,3))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(1))
+    zc2=sum(conjg(zEig(:,2))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(2))
+    zc3=sum(conjg(zEig(:,3))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(3))
     zCt(:,1,ik)=zc1*zEig(:,1)+zc2*zEig(:,2)+zc3*zEig(:,3)
 ! state 2
     zc1=sum(conjg(zEig(:,1))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(1))
-    zc2=sum(conjg(zEig(:,2))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(1))
-    zc3=sum(conjg(zEig(:,3))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(1))
+    zc2=sum(conjg(zEig(:,2))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(2))
+    zc3=sum(conjg(zEig(:,3))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(3))
     zCt(:,2,ik)=zc1*zEig(:,1)+zc2*zEig(:,2)+zc3*zEig(:,3)
 
 !== Second half dt
@@ -64,13 +64,13 @@ subroutine dt_evolve(it) ! Now coding
 
 ! state 1
     zc1=sum(conjg(zEig(:,1))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(1))
-    zc2=sum(conjg(zEig(:,2))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(1))
-    zc3=sum(conjg(zEig(:,3))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(1))
+    zc2=sum(conjg(zEig(:,2))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(2))
+    zc3=sum(conjg(zEig(:,3))*zCt(:,1,ik))*exp(-0.5d0*zI*dt*eps_t(3))
     zCt(:,1,ik)=zc1*zEig(:,1)+zc2*zEig(:,2)+zc3*zEig(:,3)
 ! state 2
     zc1=sum(conjg(zEig(:,1))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(1))
-    zc2=sum(conjg(zEig(:,2))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(1))
-    zc3=sum(conjg(zEig(:,3))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(1))
+    zc2=sum(conjg(zEig(:,2))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(2))
+    zc3=sum(conjg(zEig(:,3))*zCt(:,2,ik))*exp(-0.5d0*zI*dt*eps_t(3))
     zCt(:,2,ik)=zc1*zEig(:,1)+zc2*zEig(:,2)+zc3*zEig(:,3)
     
   end do
