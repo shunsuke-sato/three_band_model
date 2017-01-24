@@ -45,7 +45,7 @@
 ! ----------------------------------------------------------------------------
 !     .. Arguments ..
       COMPLEX(8)       A(3,3)
-      COMPLEX(9)       Q(3,3)
+      COMPLEX(8)       Q(3,3)
       DOUBLE PRECISION W(3)
 
 !     .. Parameters ..
@@ -106,8 +106,8 @@
 !       v[1] = conj( (A - lambda[1]).e1 x (A - lambda[1]).e2 )
       Q(1, 2) = Q(1, 2) + A(1, 3) * W(2)
       Q(2, 2) = Q(2, 2) + A(2, 3) * W(2)
-      Q(3, 2) = (DREAL(A(1,1)) - W(2)) * (DREAL(A(2,2)) - W(2))
-     $                                             - DREAL(Q(3, 2))
+      Q(3, 2) = (DREAL(A(1,1)) - W(2)) * (DREAL(A(2,2)) - W(2)) &
+        - DREAL(Q(3, 2))
       NORM    = SQRABS(Q(1, 2)) + SQRABS(Q(2, 2)) + DREAL(Q(3, 2))**2
       IF (NORM .LE. ERROR) THEN
         CALL ZHEEVQ3(A, Q, W)

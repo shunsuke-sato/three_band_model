@@ -21,7 +21,7 @@
 !
 !
 ! ----------------------------------------------------------------------------
-!     SUBROUTINE ZHETRD3(A, Q, D, E)
+     SUBROUTINE ZHETRD3(A, Q, D, E)
 ! ----------------------------------------------------------------------------
 ! Reduces a hermitian 3x3 matrix to real tridiagonal form by applying
 ! (unitary) Householder transformations:
