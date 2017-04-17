@@ -23,6 +23,7 @@ module global_variables
   real(8),parameter :: piz_vc = 0.5d0*sqrt(eps_g/mass_r)
   real(8),parameter :: piz_dv = 1d0,piz_dc = 1d0
   real(8),parameter :: deps12_2 = (0.5d0/(2d0*Ry) )**2
+  real(8),parameter :: fact_intra = 1d0
 
 ! Time-propagation
   integer :: Nt
