@@ -24,7 +24,7 @@ subroutine time_propagation
     call current(it+1,jav_t)
     jtz(it+1) = jav_t
 
-    if(mod(it,Nt/100) == 0 .and. myrank == 0)then
+    if(mod(it,max(Nt/100,1)) == 0 .and. myrank == 0)then
       open(nf_current,file=cf_current)
       write(nf_current,"(A)")"# tt(au), Act(au), current(au)"
       do it2=0,Nt
@@ -35,5 +35,6 @@ subroutine time_propagation
 
   end do
 
+  call nex_dist_fin
 
 end subroutine time_propagation
