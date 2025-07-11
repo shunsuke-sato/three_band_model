@@ -14,7 +14,7 @@ subroutine dt_evolve(it) ! Now coding
   real(8) :: eps_t(3),de12
   real(8) :: Act_old,Act_new,Et_old,Et_new
 
-  Act_old = Act(it); Act_new = Act(it+1)
+  Act_old = Act(it)*fact_intra; Act_new = Act(it+1)*fact_intra
   Et_old = -0.5d0*(Act(it+1)-Act(it-1))/dt
   Et_new = -0.5d0*(Act(it+1+1)-Act(it+1-1))/dt
 
