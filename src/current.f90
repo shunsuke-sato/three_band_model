@@ -48,7 +48,7 @@ subroutine current(it,jav)
      +piz_vc*conjg(zCt(2,3,ik))*zCt(3,3,ik) &
       ) 
 
-    jav_l = jav_l + (jz_intra+jz_inter)*kr(ikr)
+    jav_l = jav_l + (jz_intra+jz_inter)*kr(ikr) 
   end do
   jav_l=jav_l*2d0/((2d0*pi)**3)*(2d0*pi*dkr*dkz) 
 

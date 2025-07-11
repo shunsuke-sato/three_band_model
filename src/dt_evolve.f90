@@ -52,7 +52,7 @@ subroutine dt_evolve(it) ! Now coding
     zc1=sum(conjg(zEig(:,1))*zCt(:,3,ik))*exp(-0.5d0*zI*dt*eps_t(1))
     zc2=sum(conjg(zEig(:,2))*zCt(:,3,ik))*exp(-0.5d0*zI*dt*eps_t(2))
     zc3=sum(conjg(zEig(:,3))*zCt(:,3,ik))*exp(-0.5d0*zI*dt*eps_t(3))
-    zCt(:,2,ik)=zc1*zEig(:,1)+zc2*zEig(:,2)+zc3*zEig(:,3)
+    zCt(:,3,ik)=zc1*zEig(:,1)+zc2*zEig(:,2)+zc3*zEig(:,3)
 
 !== Second half dt
     kz(ikz) = kz0(ikz) + Act_new
@@ -83,7 +83,7 @@ subroutine dt_evolve(it) ! Now coding
     zc1=sum(conjg(zEig(:,1))*zCt(:,3,ik))*exp(-0.5d0*zI*dt*eps_t(1))
     zc2=sum(conjg(zEig(:,2))*zCt(:,3,ik))*exp(-0.5d0*zI*dt*eps_t(2))
     zc3=sum(conjg(zEig(:,3))*zCt(:,3,ik))*exp(-0.5d0*zI*dt*eps_t(3))
-    zCt(:,2,ik)=zc1*zEig(:,1)+zc2*zEig(:,2)+zc3*zEig(:,3)
+    zCt(:,3,ik)=zc1*zEig(:,1)+zc2*zEig(:,2)+zc3*zEig(:,3)
     
   end do
 

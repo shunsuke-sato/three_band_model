@@ -76,4 +76,5 @@ subroutine preparation
   occ(:, :) = 1d0/(exp((eps(:,:)-mu_chem_pot)/kbT)+1d0)
 
 
+
 end subroutine preparation
