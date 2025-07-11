@@ -24,11 +24,13 @@ module global_variables
   real(8),parameter :: piz_dv = 1d0,piz_dc = 1d0
   real(8),parameter :: deps12_2 = (0.5d0/(2d0*Ry) )**2
   real(8),parameter :: fact_intra = 1d0
+  real(8),parameter :: mu_chem_pot = eps_g*0.5d0
+  real(8),parameter :: kbT = (4d0/1.160451812d4)/27.2114d0
 
 ! Time-propagation
   integer :: Nt
   real(8) :: dt
-  real(8),allocatable :: eps(:,:)
+  real(8),allocatable :: eps(:,:), occ(:,:)
   complex(8),allocatable :: zCt(:,:,:)
   real(8),allocatable :: Act(:),Act_dt2(:),jtz(:),jtz_intra(:),jtz_inter(:)
   character(20) :: envelope_1,envelope_2

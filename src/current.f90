@@ -22,17 +22,31 @@ subroutine current(it,jav)
 
 ! state 1
     jz_intra = kz(ikz)*( &
-      (1d0-abs(zCt(2,1,ik))**2-abs(zCt(2,2,ik))**2)*mass_v_i &
-      +(abs(zCt(3,1,ik))**2+abs(zCt(3,2,ik))**2)*mass_c_i )
+      (1d0 &
+      -occ(1,ik)*abs(zCt(2,1,ik))**2 &
+      -occ(2,ik)*abs(zCt(2,2,ik))**2 &
+      -occ(3,ik)*abs(zCt(2,3,ik))**2 &
+      )*mass_v_i &
+      +(&
+       occ(1,ik)*abs(zCt(3,1,ik))**2 &
+      +occ(2,ik)*abs(zCt(3,2,ik))**2 &
+      +occ(3,ik)*abs(zCt(3,3,ik))**2 &
+      )*mass_c_i )
 
-    jz_inter = 2d0*real( &
+    jz_inter = 2d0*occ(1,ik)*real( &
       piz_dv*conjg(zCt(1,1,ik))*zCt(2,1,ik) &
      +piz_dc*conjg(zCt(1,1,ik))*zCt(3,1,ik) &
-     +piz_vc*conjg(zCt(2,1,ik))*zCt(3,1,ik) &
+     +piz_vc*conjg(zCt(2,1,ik))*zCt(3,1,ik) ) &
+     +2d0*occ(2,ik)*real( &
      +piz_dv*conjg(zCt(1,2,ik))*zCt(2,2,ik) &
      +piz_dc*conjg(zCt(1,2,ik))*zCt(3,2,ik) &
      +piz_vc*conjg(zCt(2,2,ik))*zCt(3,2,ik) &
-      )
+      ) &
+     +2d0*occ(3,ik)*real( &
+     +piz_dv*conjg(zCt(1,3,ik))*zCt(2,3,ik) &
+     +piz_dc*conjg(zCt(1,3,ik))*zCt(3,3,ik) &
+     +piz_vc*conjg(zCt(2,3,ik))*zCt(3,3,ik) &
+      ) 
 
     jav_l = jav_l + (jz_intra+jz_inter)*kr(ikr)
   end do

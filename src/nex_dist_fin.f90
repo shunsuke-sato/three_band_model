@@ -30,21 +30,21 @@ subroutine nex_dist_fin
     iw = aint( (eps_t(1) - Emin)/dw )
     if(iw >= 0 .and. iw <= Nw)then
       nex_dist_l(iw,0) = nex_dist_l(iw,0) + kr(ikr)
-      nex_dist_l(iw,1) = nex_dist_l(iw,1) + kr(ikr)*sum(abs(zCt(1,:,ik))**2)
+      nex_dist_l(iw,1) = nex_dist_l(iw,1) + kr(ikr)*sum(abs(zCt(1,:,ik))**2*occ(:,ik))
     end if
 
 ! state 2
     iw = aint( (eps_t(2) - Emin)/dw )
     if(iw >= 0 .and. iw <= Nw)then
       nex_dist_l(iw,0) = nex_dist_l(iw,0) + kr(ikr)
-      nex_dist_l(iw,2) = nex_dist_l(iw,2) + kr(ikr)*sum(abs(zCt(2,:,ik))**2)
+      nex_dist_l(iw,2) = nex_dist_l(iw,2) + kr(ikr)*sum(abs(zCt(2,:,ik))**2*occ(:,ik))
     end if
 
 ! state 3
     iw = aint( (eps_t(3) - Emin)/dw )
     if(iw >= 0 .and. iw <= Nw)then
       nex_dist_l(iw,0) = nex_dist_l(iw,0) + kr(ikr)
-      nex_dist_l(iw,3) = nex_dist_l(iw,3) + kr(ikr)*sum(abs(zCt(3,:,ik))**2)
+      nex_dist_l(iw,3) = nex_dist_l(iw,3) + kr(ikr)*sum(abs(zCt(3,:,ik))**2*occ(:,ik))
     end if
 
   end do
