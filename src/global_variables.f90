@@ -17,15 +17,15 @@ module global_variables
   real(8) :: kr_max,kz_max,dkr,dkz
   real(8),allocatable :: kr(:),kz0(:),kz(:)
 ! d: (semi) core , v: valence, c: conduction
-  real(8),parameter :: eps_d = -40.73d0/(2d0*Ry), eps_g = 1.52d0/(2d0*Ry) 
-  real(8),parameter :: mass_v = 0.08d0, mass_c = 0.067d0
+  real(8),parameter :: eps_d = -29.5d0/(2d0*Ry), eps_g = 0.664d0/(2d0*Ry) 
+  real(8),parameter :: mass_v = 0.04d0, mass_c = 0.0823d0
   real(8),parameter :: mass_r = 1d0/(1d0/mass_v+1d0/mass_c)
-  real(8),parameter :: piz_vc = 0.5d0*sqrt(eps_g/mass_r)
+  real(8),parameter :: piz_vc = 0d0 !0.5d0*sqrt(eps_g/mass_r)
   real(8),parameter :: piz_dv = 1d0,piz_dc = 1d0
   real(8),parameter :: deps12_2 = (0.5d0/(2d0*Ry) )**2
   real(8),parameter :: fact_intra = 1d0
   real(8),parameter :: mu_chem_pot = eps_g*0.5d0
-  real(8),parameter :: kbT = (4d0/1.160451812d4)/27.2114d0
+  real(8),parameter :: kbT = (300d0/1.160451812d4)/27.2114d0
 
 ! Time-propagation
   integer :: Nt
